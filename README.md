@@ -189,7 +189,7 @@ public class RegisterMemberTest {  // ✅ ADD 'public'
     @Test
     public void testDepositDefault1500() {
         Member m = new Member("Ghada", "Al Wakra", "FIN004");
-        m.setDepositAmount(1500);  // ✅ Set it manually
+        m.setDepositAmount(1500);  // Set it manually
         assertEquals(1500, m.getDepositAmount(), 0.001);
     }
     
@@ -197,7 +197,7 @@ public class RegisterMemberTest {  // ✅ ADD 'public'
     @Test
     public void testMemberNumberFormat() {
         Member m = new Member("Mona", "West Bay", "FIN005");
-        assertTrue(m.getMembershipNumber().startsWith("MB"));  // ✅ Simplified check
+        assertTrue(m.getMembershipNumber().startsWith("MB"));  //  Simplified check
     }
     
     // UC1-T5: Data saved correctly
