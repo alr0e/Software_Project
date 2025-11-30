@@ -142,15 +142,16 @@ import static org.junit.Assert.*;
 import LibraryFX.Member;
 import LibraryFX.LibraryData;
 
-public class RegisterMemberTest {  // ✅ ADD 'public'
+public class RegisterMemberTest {  
 
     private LibraryData library;
 
-    @Before  // ✅ ADD this annotation
+    @Before
     public void setUp() {
-        library = LibraryData.getInstance();  // ✅ Use getInstance() for Singleton
+        library = LibraryData.getInstance();
     }
 	
+    //T1
     @Test
     public void testValidRegistration() {
         Member m = new Member("Alice", "Doha Qatar", "FIN001");
@@ -162,45 +163,23 @@ public class RegisterMemberTest {  // ✅ ADD 'public'
         assertEquals(1500, m.getDepositAmount(), 0.001);  // ✅ Add delta for double
         assertNotNull(library.getMember(m.getMembershipNumber()));
     }
-	
-    // UC1-T2: Test empty name - but your Member class doesn't validate!
-    @Test
-    public void testEmptyNameStillWorks() {  // ✅ Renamed since no exception thrown
-        Member m = new Member("", "Doha", "FIN002");
-        library.addMember(m);
-        assertEquals("", m.getName());  // Your Member allows empty names
-    }
 
-    @Test
-    public void testEmptyAddressStillWorks() {
-        Member m = new Member("Sara", "", "FIN002");
-        library.addMember(m);
-        assertEquals("", m.getAddress());
-    }
-
-    @Test
-    public void testEmptyFinanceAccountStillWorks() {
-        Member m = new Member("Ali", "Qatar", "");
-        library.addMember(m);
-        assertEquals("", m.getFinanceAccount());
-    }
-    
-    // UC1-T3: Deposit always =1500
+    //T3 Deposit always =1500
     @Test
     public void testDepositDefault1500() {
         Member m = new Member("Ghada", "Al Wakra", "FIN004");
-        m.setDepositAmount(1500);  // Set it manually
+        m.setDepositAmount(1500); 
         assertEquals(1500, m.getDepositAmount(), 0.001);
     }
     
-    // UC1-T4: Member number format check
+    //T4 Member number format check
     @Test
     public void testMemberNumberFormat() {
         Member m = new Member("Mona", "West Bay", "FIN005");
-        assertTrue(m.getMembershipNumber().startsWith("MB"));  //  Simplified check
+        assertTrue(m.getMembershipNumber().startsWith("MB"));  // 
     }
     
-    // UC1-T5: Data saved correctly
+    //T5 Data saved correctly
     @Test
     public void testMemberGetsStored() {
         Member m = new Member("Yousef", "Lusail", "FIN006");
